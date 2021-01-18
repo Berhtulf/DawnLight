@@ -8,18 +8,46 @@
 
 /* Begin PBXBuildFile section */
 		63C4BCFA25B5B19500B4C6E2 /* DawnLightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C4BCF925B5B19500B4C6E2 /* DawnLightApp.swift */; };
-		63C4BCFC25B5B19500B4C6E2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C4BCFB25B5B19500B4C6E2 /* ContentView.swift */; };
+		63C4BCFC25B5B19500B4C6E2 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C4BCFB25B5B19500B4C6E2 /* MainView.swift */; };
 		63C4BCFE25B5B19600B4C6E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63C4BCFD25B5B19600B4C6E2 /* Assets.xcassets */; };
 		63C4BD0125B5B19600B4C6E2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63C4BD0025B5B19600B4C6E2 /* Preview Assets.xcassets */; };
+		63C4BD1B25B5BA0600B4C6E2 /* LeftPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C4BD0F25B5BA0600B4C6E2 /* LeftPad.swift */; };
+		63C4BD1C25B5BA0600B4C6E2 /* StringConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C4BD1125B5BA0600B4C6E2 /* StringConstants.swift */; };
+		63C4BD1D25B5BA0600B4C6E2 /* JSONDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C4BD1225B5BA0600B4C6E2 /* JSONDecoder.swift */; };
+		63C4BD1E25B5BA0600B4C6E2 /* FloatExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C4BD1425B5BA0600B4C6E2 /* FloatExtension.swift */; };
+		63C4BD1F25B5BA0600B4C6E2 /* PaddingLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C4BD1525B5BA0600B4C6E2 /* PaddingLeft.swift */; };
+		63C4BD2025B5BA0600B4C6E2 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C4BD1625B5BA0600B4C6E2 /* ColorExtension.swift */; };
+		63C4BD2125B5BA0600B4C6E2 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C4BD1725B5BA0600B4C6E2 /* Notifications.swift */; };
+		63C4BD2225B5BA0600B4C6E2 /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C4BD1825B5BA0600B4C6E2 /* CoreData.swift */; };
+		63C4BD2325B5BA0600B4C6E2 /* CGFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C4BD1925B5BA0600B4C6E2 /* CGFunctions.swift */; };
+		63C4BD2425B5BA0600B4C6E2 /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C4BD1A25B5BA0600B4C6E2 /* TimeInterval.swift */; };
+		63C4BD2925B5BA3A00B4C6E2 /* CapsuleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C4BD2825B5BA3A00B4C6E2 /* CapsuleButtonStyle.swift */; };
+		63C4BD2C25B5BD6B00B4C6E2 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C4BD2B25B5BD6B00B4C6E2 /* MainViewModel.swift */; };
+		63C4BD2F25B5CB7A00B4C6E2 /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C4BD2E25B5CB7A00B4C6E2 /* LocationViewModel.swift */; };
+		63C4BD3325B5D7D600B4C6E2 /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C4BD3225B5D7D600B4C6E2 /* WeatherAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		63C4BCF625B5B19500B4C6E2 /* DawnLight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DawnLight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63C4BCF925B5B19500B4C6E2 /* DawnLightApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DawnLightApp.swift; sourceTree = "<group>"; };
-		63C4BCFB25B5B19500B4C6E2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		63C4BCFB25B5B19500B4C6E2 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		63C4BCFD25B5B19600B4C6E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		63C4BD0025B5B19600B4C6E2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		63C4BD0225B5B19600B4C6E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63C4BD0F25B5BA0600B4C6E2 /* LeftPad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftPad.swift; sourceTree = "<group>"; };
+		63C4BD1125B5BA0600B4C6E2 /* StringConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringConstants.swift; sourceTree = "<group>"; };
+		63C4BD1225B5BA0600B4C6E2 /* JSONDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONDecoder.swift; sourceTree = "<group>"; };
+		63C4BD1425B5BA0600B4C6E2 /* FloatExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatExtension.swift; sourceTree = "<group>"; };
+		63C4BD1525B5BA0600B4C6E2 /* PaddingLeft.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddingLeft.swift; sourceTree = "<group>"; };
+		63C4BD1625B5BA0600B4C6E2 /* ColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		63C4BD1725B5BA0600B4C6E2 /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		63C4BD1825B5BA0600B4C6E2 /* CoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
+		63C4BD1925B5BA0600B4C6E2 /* CGFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGFunctions.swift; sourceTree = "<group>"; };
+		63C4BD1A25B5BA0600B4C6E2 /* TimeInterval.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
+		63C4BD2825B5BA3A00B4C6E2 /* CapsuleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButtonStyle.swift; sourceTree = "<group>"; };
+		63C4BD2B25B5BD6B00B4C6E2 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		63C4BD2E25B5CB7A00B4C6E2 /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
+		63C4BD3225B5D7D600B4C6E2 /* WeatherAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,10 +80,15 @@
 		63C4BCF825B5B19500B4C6E2 /* DawnLight */ = {
 			isa = PBXGroup;
 			children = (
+				63C4BD3125B5D7CC00B4C6E2 /* APIs */,
+				63C4BD2625B5BA1400B4C6E2 /* Styles */,
+				63C4BD0C25B5B23F00B4C6E2 /* ViewModels */,
+				63C4BD0B25B5B23900B4C6E2 /* Models */,
 				63C4BCF925B5B19500B4C6E2 /* DawnLightApp.swift */,
-				63C4BCFB25B5B19500B4C6E2 /* ContentView.swift */,
+				63C4BCFB25B5B19500B4C6E2 /* MainView.swift */,
 				63C4BCFD25B5B19600B4C6E2 /* Assets.xcassets */,
 				63C4BD0225B5B19600B4C6E2 /* Info.plist */,
+				63C4BD0E25B5BA0600B4C6E2 /* Shared */,
 				63C4BCFF25B5B19600B4C6E2 /* Preview Content */,
 			);
 			path = DawnLight;
@@ -67,6 +100,79 @@
 				63C4BD0025B5B19600B4C6E2 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		63C4BD0B25B5B23900B4C6E2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		63C4BD0C25B5B23F00B4C6E2 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				63C4BD2B25B5BD6B00B4C6E2 /* MainViewModel.swift */,
+				63C4BD2E25B5CB7A00B4C6E2 /* LocationViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		63C4BD0E25B5BA0600B4C6E2 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				63C4BD0F25B5BA0600B4C6E2 /* LeftPad.swift */,
+				63C4BD1025B5BA0600B4C6E2 /* Constants */,
+				63C4BD1225B5BA0600B4C6E2 /* JSONDecoder.swift */,
+				63C4BD1325B5BA0600B4C6E2 /* Extensions */,
+				63C4BD1725B5BA0600B4C6E2 /* Notifications.swift */,
+				63C4BD1825B5BA0600B4C6E2 /* CoreData.swift */,
+				63C4BD1925B5BA0600B4C6E2 /* CGFunctions.swift */,
+				63C4BD1A25B5BA0600B4C6E2 /* TimeInterval.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		63C4BD1025B5BA0600B4C6E2 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				63C4BD1125B5BA0600B4C6E2 /* StringConstants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		63C4BD1325B5BA0600B4C6E2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				63C4BD1425B5BA0600B4C6E2 /* FloatExtension.swift */,
+				63C4BD1525B5BA0600B4C6E2 /* PaddingLeft.swift */,
+				63C4BD1625B5BA0600B4C6E2 /* ColorExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		63C4BD2625B5BA1400B4C6E2 /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				63C4BD2725B5BA2300B4C6E2 /* ButtonStyles */,
+			);
+			path = Styles;
+			sourceTree = "<group>";
+		};
+		63C4BD2725B5BA2300B4C6E2 /* ButtonStyles */ = {
+			isa = PBXGroup;
+			children = (
+				63C4BD2825B5BA3A00B4C6E2 /* CapsuleButtonStyle.swift */,
+			);
+			path = ButtonStyles;
+			sourceTree = "<group>";
+		};
+		63C4BD3125B5D7CC00B4C6E2 /* APIs */ = {
+			isa = PBXGroup;
+			children = (
+				63C4BD3225B5D7D600B4C6E2 /* WeatherAPI.swift */,
+			);
+			path = APIs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,8 +244,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63C4BCFC25B5B19500B4C6E2 /* ContentView.swift in Sources */,
+				63C4BD1C25B5BA0600B4C6E2 /* StringConstants.swift in Sources */,
+				63C4BD2425B5BA0600B4C6E2 /* TimeInterval.swift in Sources */,
+				63C4BD2325B5BA0600B4C6E2 /* CGFunctions.swift in Sources */,
+				63C4BD1B25B5BA0600B4C6E2 /* LeftPad.swift in Sources */,
+				63C4BD1F25B5BA0600B4C6E2 /* PaddingLeft.swift in Sources */,
+				63C4BD3325B5D7D600B4C6E2 /* WeatherAPI.swift in Sources */,
+				63C4BD2125B5BA0600B4C6E2 /* Notifications.swift in Sources */,
+				63C4BD2225B5BA0600B4C6E2 /* CoreData.swift in Sources */,
+				63C4BD2C25B5BD6B00B4C6E2 /* MainViewModel.swift in Sources */,
+				63C4BD2025B5BA0600B4C6E2 /* ColorExtension.swift in Sources */,
+				63C4BD1E25B5BA0600B4C6E2 /* FloatExtension.swift in Sources */,
+				63C4BD1D25B5BA0600B4C6E2 /* JSONDecoder.swift in Sources */,
+				63C4BCFC25B5B19500B4C6E2 /* MainView.swift in Sources */,
 				63C4BCFA25B5B19500B4C6E2 /* DawnLightApp.swift in Sources */,
+				63C4BD2F25B5CB7A00B4C6E2 /* LocationViewModel.swift in Sources */,
+				63C4BD2925B5BA3A00B4C6E2 /* CapsuleButtonStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
