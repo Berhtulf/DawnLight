@@ -56,4 +56,3 @@ extension LocationViewModel: CLLocationManagerDelegate {
         })
     }
 }
-

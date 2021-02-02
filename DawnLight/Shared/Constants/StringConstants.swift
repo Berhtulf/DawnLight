@@ -8,5 +8,5 @@
 import Foundation
 
 enum StringConstants: String {
-    case userDefaultsSaveGame = "placedBuildings"
+    case sunrise = "sunriseSince1970"
 }
