@@ -12,8 +12,6 @@ struct SettingsView: View {
     
     var body: some View {
         NavigationView{
-            VStack{
-                Spacer()
                 Form{
                     Section(header:Text("General")){
                         Toggle(isOn: $settings.usingLocationData, label: {
@@ -25,10 +23,11 @@ struct SettingsView: View {
                             Text("Sound and haptic")
                         })
                         Section{
-                            Picker(selection: $settings.soundID, label: Text("Sound"), content: {
-                                Text("Birds").tag(1)
-                                Text("Dogs").tag(2)
-                            })
+                            Picker("Sound", selection: $settings.soundID) {
+                                ForEach(0..<100) { i in
+                                    Text("\(i)")
+                                }
+                            }
                             HStack{
                                 Image(systemName: "speaker.fill")
                                 Slider(value: $settings.volume, in: 0...1, label: {Text("Volume")})
@@ -37,9 +36,7 @@ struct SettingsView: View {
                         }.disabled(!settings.soundAndHaptic)
                     }
                 }
-                .buttonStyle(CapsuleButtonStyle())
-            }.navigationBarTitle("")
-            .navigationBarHidden(true)
+                .navigationBarTitle("Settings")
         }
     }
 }

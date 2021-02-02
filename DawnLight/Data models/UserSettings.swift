@@ -12,5 +12,5 @@ class UserSettings: ObservableObject{
     
     @Published var soundAndHaptic = true
     @Published var soundID = 1
-    @Published var volume = 0.5
+    @Published var volume: Float = 0.5
 }

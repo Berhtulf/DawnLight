@@ -23,7 +23,7 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>We need your location to get the dawn time for your location</string>
 	<key>UIApplicationExitsOnSuspend</key>
-	<true/>
+	<false/>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

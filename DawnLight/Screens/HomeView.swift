@@ -15,7 +15,7 @@ struct HomeView: View {
     
     @State private var isLoading = false
     
-    @State var bombSoundEffect: AVAudioPlayer?
+    @State private var player: AVAudioPlayer?
     let weatherAPI = WeatherAPI(apiKey: "fe8b5986474317d00dd8b08ca8b886ff")
     
     var body: some View {
@@ -56,8 +56,13 @@ struct HomeView: View {
                                 .foregroundColor(.white)
                                 .background(
                                     RoundedRectangle(cornerRadius: geometry.size.width/3)
-                                        .fill(Color.accentColor)
-                                        .frame(width: geometry.size.width/3, height: min(geometry.size.width/3/2, 100), alignment: .center)
+                                        .fill(LinearGradient(
+                                                gradient: Gradient(stops: [
+                                                                    .init(color: .orange, location: 0),
+                                                                    .init(color: .red, location: 1)]),
+                                                startPoint: UnitPoint(x: 1, y: 1),
+                                                endPoint: UnitPoint(x: 0, y: 0)))
+                                        .frame(width: geometry.size.width/3, height: min(geometry.size.width/3/2, 75), alignment: .center)
                                 )
                                 .padding()
                             Spacer()
@@ -76,16 +81,22 @@ struct HomeView: View {
         let url = URL(fileURLWithPath: path)
         
         do {
-            bombSoundEffect = try AVAudioPlayer(contentsOf: url)
-            let time = bombSoundEffect!.deviceCurrentTime
+            player = try AVAudioPlayer(contentsOf: url)
+            
+            try AVAudioSession.sharedInstance().setActive(false)
             try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: .duckOthers)
             try AVAudioSession.sharedInstance().setActive(true)
+            
             UIApplication.shared.beginReceivingRemoteControlEvents()
-            bombSoundEffect?.play(atTime: time + 10)
+            
             print("playing")
-        } catch {
-            print("couldn't load file")
+        } catch let error as NSError {
+            print("AVAudioSession error: \(error.localizedDescription)")
         }
+        
+        player!.volume = settings.volume
+        player!.prepareToPlay()
+        player!.play(atTime: player!.deviceCurrentTime + 10)
     }
     private func loadWeatherData() {
         if (settings.usingLocationData){
