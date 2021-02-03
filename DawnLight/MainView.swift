@@ -9,8 +9,6 @@ import SwiftUI
 import CoreLocation
 
 struct ContentView: View {
-    @EnvironmentObject var settings: UserSettings
-    
     @State var selectedTab = 0
     
     @State var date = Date()

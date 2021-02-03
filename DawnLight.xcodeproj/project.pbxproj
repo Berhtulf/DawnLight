@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		63901DD425B74FE8002B3A33 /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63901DD325B74FE8002B3A33 /* MainModel.swift */; };
+		63322A4225CAE1A7006C7A2D /* MPVolumeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63322A4125CAE1A7006C7A2D /* MPVolumeView.swift */; };
+		63322A4525CAEFFE006C7A2D /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63322A4425CAEFFE006C7A2D /* DateExtension.swift */; };
+		63901DD425B74FE8002B3A33 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63901DD325B74FE8002B3A33 /* HomeModel.swift */; };
 		63901DDA25BC7A12002B3A33 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63901DD925BC7A12002B3A33 /* WeatherData.swift */; };
 		63901DDF25BC7B45002B3A33 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63901DDE25BC7B45002B3A33 /* SettingsView.swift */; };
-		63901DE325BC7B6F002B3A33 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63901DE225BC7B6F002B3A33 /* UserSettings.swift */; };
 		63901DE625BC7DA1002B3A33 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63901DE525BC7DA1002B3A33 /* HomeView.swift */; };
 		63901DEA25BC8F7F002B3A33 /* FantasyVillage.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 63901DE925BC8F7F002B3A33 /* FantasyVillage.mp3 */; };
 		63C4BCFA25B5B19500B4C6E2 /* DawnLightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C4BCF925B5B19500B4C6E2 /* DawnLightApp.swift */; };
@@ -34,10 +35,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		63901DD325B74FE8002B3A33 /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
+		63322A4125CAE1A7006C7A2D /* MPVolumeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPVolumeView.swift; sourceTree = "<group>"; };
+		63322A4425CAEFFE006C7A2D /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		63901DD325B74FE8002B3A33 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		63901DD925BC7A12002B3A33 /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
 		63901DDE25BC7B45002B3A33 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		63901DE225BC7B6F002B3A33 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		63901DE525BC7DA1002B3A33 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		63901DE925BC8F7F002B3A33 /* FantasyVillage.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = FantasyVillage.mp3; sourceTree = "<group>"; };
 		63C4BCF625B5B19500B4C6E2 /* DawnLight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DawnLight.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,7 +79,6 @@
 			isa = PBXGroup;
 			children = (
 				63901DD925BC7A12002B3A33 /* WeatherData.swift */,
-				63901DE225BC7B6F002B3A33 /* UserSettings.swift */,
 			);
 			path = "Data models";
 			sourceTree = "<group>";
@@ -138,7 +139,7 @@
 		63C4BD0B25B5B23900B4C6E2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				63901DD325B74FE8002B3A33 /* MainModel.swift */,
+				63901DD325B74FE8002B3A33 /* HomeModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -181,6 +182,8 @@
 				63C4BD1425B5BA0600B4C6E2 /* FloatExtension.swift */,
 				63C4BD1525B5BA0600B4C6E2 /* PaddingLeft.swift */,
 				63C4BD1625B5BA0600B4C6E2 /* ColorExtension.swift */,
+				63322A4125CAE1A7006C7A2D /* MPVolumeView.swift */,
+				63322A4425CAEFFE006C7A2D /* DateExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63C4BD1C25B5BA0600B4C6E2 /* StringConstants.swift in Sources */,
+				63322A4225CAE1A7006C7A2D /* MPVolumeView.swift in Sources */,
 				63C4BD2425B5BA0600B4C6E2 /* TimeInterval.swift in Sources */,
 				63C4BD2325B5BA0600B4C6E2 /* CGFunctions.swift in Sources */,
 				63C4BD1B25B5BA0600B4C6E2 /* LeftPad.swift in Sources */,
@@ -290,9 +294,9 @@
 				63C4BD2C25B5BD6B00B4C6E2 /* HomeViewModel.swift in Sources */,
 				63C4BD2025B5BA0600B4C6E2 /* ColorExtension.swift in Sources */,
 				63C4BD1E25B5BA0600B4C6E2 /* FloatExtension.swift in Sources */,
-				63901DD425B74FE8002B3A33 /* MainModel.swift in Sources */,
+				63901DD425B74FE8002B3A33 /* HomeModel.swift in Sources */,
 				63C4BD1D25B5BA0600B4C6E2 /* JSONDecoder.swift in Sources */,
-				63901DE325BC7B6F002B3A33 /* UserSettings.swift in Sources */,
+				63322A4525CAEFFE006C7A2D /* DateExtension.swift in Sources */,
 				63C4BCFC25B5B19500B4C6E2 /* MainView.swift in Sources */,
 				63901DE625BC7DA1002B3A33 /* HomeView.swift in Sources */,
 				63C4BCFA25B5B19500B4C6E2 /* DawnLightApp.swift in Sources */,

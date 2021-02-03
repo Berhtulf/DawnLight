@@ -7,10 +7,9 @@
 
 import Foundation
 
-struct MainModel {
+struct HomeModel {
     var selectedTab = 0
-    var sunset:TimeInterval?
-    var sunrise:TimeInterval?
+    var sunrise: String?
     
     var buzzDate: TimeInterval {
         get {

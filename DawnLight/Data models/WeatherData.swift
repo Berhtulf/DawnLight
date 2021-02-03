@@ -8,9 +8,11 @@
 import Foundation
 
 struct WeatherData : Codable {
-    var sys: Sys
+    var astronomy: Astronomy
 }
-struct Sys: Codable{
-    var sunset: TimeInterval
-    var sunrise: TimeInterval
+struct Astronomy: Codable{
+    var astro: Astro
+}
+struct Astro: Codable {
+    var sunrise: String
 }
