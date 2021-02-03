@@ -11,7 +11,7 @@ struct SettingsView: View {
     @AppStorage("usingGPS") private var usingGPS = true
     @AppStorage("soundAndHaptic") private var soundAndHaptic = true
     @AppStorage("soundID") private var soundID = 1
-    @AppStorage("volume") private var volume = 0.5
+    @AppStorage("volume") private var volume:Double = 1
     
     var body: some View {
         NavigationView{
@@ -24,7 +24,7 @@ struct SettingsView: View {
                     Section{
                         Picker("Sound", selection: $soundID) {
                             ForEach(0..<10) { i in
-                                Text("\(i)")
+                                Text("WIP \(i)")
                             }
                         }
                         HStack{

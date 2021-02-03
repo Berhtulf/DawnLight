@@ -13,7 +13,7 @@ struct HomeView: View {
     @AppStorage("usingGPS") private var usingGPS = true
     @AppStorage("soundAndHaptic") private var soundAndHaptic = true
     @AppStorage("soundID") private var soundID = 1
-    @AppStorage("volume") private var volume = 0.5
+    @AppStorage("volume") private var volume: Double = 1
     
     
     @StateObject var viewModel = HomeViewModel()
@@ -130,7 +130,7 @@ struct HomeView: View {
         player!.play(atTime: player!.deviceCurrentTime + delay)
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delay - 10) {
-            MPVolumeView.setVolume(1)
+            MPVolumeView.setVolume(Float(volume))
         }
         
         viewModel.alarmSet = true
