@@ -8,7 +8,7 @@
 import Foundation
 
 extension Date {
-    func add(days: Int) -> Date{
+    func add(days: Int) -> Date {
         return self.addingTimeInterval(TimeInterval(days * 86400))
     }
 }

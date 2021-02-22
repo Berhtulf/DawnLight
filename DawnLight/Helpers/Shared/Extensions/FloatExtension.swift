@@ -24,11 +24,3 @@ extension Float {
     }
     
 }
-
-extension TimeInterval {
-    var toHoursMinutesSeconds: (Int,Int,Int) {
-        return (Int(self / 3600),
-                Int((self.truncatingRemainder(dividingBy: 3600)) / 60),
-                Int((self.truncatingRemainder(dividingBy: 3600)).truncatingRemainder(dividingBy: 60)))
-    }
-}
