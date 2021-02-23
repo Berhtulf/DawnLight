@@ -131,7 +131,7 @@ class HomeViewModel: ObservableObject {
     }
     func load() {
         guard let data = UserDefaults.standard.data(forKey: "HomeModel") else {
-            fatalError("Can not load Settings")
+            return
         }
         let decoder = JSONDecoder()
         let savedData = try? decoder.decode(SettingsModel.self, from: data)

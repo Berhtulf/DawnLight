@@ -21,16 +21,13 @@ class LocationManager: NSObject, ObservableObject {
     private let locationManager = CLLocationManager()
     
     func checkLocationAuthorization(){
-        if let status = locationStatus {
-            if status == .notDetermined {
-                locationManager.requestWhenInUseAuthorization()
-            }
+        if locationStatus == .notDetermined || locationStatus == nil {
+            locationManager.requestWhenInUseAuthorization()
         }
     }
 }
 
 extension LocationManager: CLLocationManagerDelegate {
-    
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         self.locationStatus = status
     }
