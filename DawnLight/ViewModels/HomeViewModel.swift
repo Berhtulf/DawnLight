@@ -10,12 +10,16 @@ import CoreLocation
 
 class HomeViewModel: ObservableObject {
     init() {
+        load()
         if CLLocationManager.locationServicesEnabled() && usingGPS {
             location = LocationManager(listener: self)
         }
     }
+    deinit {
+        save()
+    }
     
-    @Published private var model = SettingsModel()
+    @Published private(set) var model = SettingsModel()
     @Published var alarmSet = false
     @Published var isLoading = false
     @Published var sunriseAsDate: Date?
@@ -27,6 +31,7 @@ class HomeViewModel: ObservableObject {
         }
         set {
             model.backupBuzz = newValue
+            setNewBuzzDate()
         }
     }
     var volume: Float {
@@ -43,6 +48,10 @@ class HomeViewModel: ObservableObject {
         }
         set {
             model.usingGPS = newValue
+            if newValue {
+                location = LocationManager(listener: self)
+                setNewBuzzDate()
+            }
         }
     }
     var alarm: Alarm {
@@ -65,6 +74,20 @@ class HomeViewModel: ObservableObject {
         return nil
     }
     
+    private func formatData(_ data: SunriseData){
+        model.sunrise = data.results.sunrise
+        
+        let dateFormatter = ISO8601DateFormatter()
+        dateFormatter.formatOptions = [.withInternetDateTime]
+        
+        if let date = dateFormatter.date(from: data.results.sunrise) {
+            print(date)
+            sunriseAsDate = date
+            buzzDate = min(backupBuzz, date)
+            print(buzzDate)
+        }
+    }
+    
     //MARK: - Intents
     func loadWeatherData() {
         if sunriseAsDate == nil && isLoading == false {
@@ -79,17 +102,24 @@ class HomeViewModel: ObservableObject {
         }
         return
     }
-    
-    private func formatData(_ data: SunriseData){
-        model.sunrise = data.results.sunrise
-        
-        let dateFormatter = ISO8601DateFormatter()
-        dateFormatter.formatOptions = [.withInternetDateTime]
-        
-        if let date = dateFormatter.date(from: data.results.sunrise) {
-            sunriseAsDate = date
-            buzzDate = date
+    func updateBuzzTimes() {
+        if backupBuzz.timeIntervalSinceNow < 0 {
+            backupBuzz.addTimeInterval(86400)
         }
+        if backupBuzz.timeIntervalSinceNow > 86400 {
+            backupBuzz.addTimeInterval(-86400)
+        }
+        if buzzDate.timeIntervalSinceNow > 86400 {
+            buzzDate.addTimeInterval(-86400)
+        }
+        if buzzDate.timeIntervalSinceNow < 0 {
+            buzzDate.addTimeInterval(86400)
+        }
+    }
+    func setNewBuzzDate() {
+        buzzDate = sunriseAsDate ?? Date()
+        updateBuzzTimes()
+        buzzDate = min(buzzDate, backupBuzz)
     }
     
     func save() {
@@ -97,6 +127,7 @@ class HomeViewModel: ObservableObject {
         let data = try? encoder.encode(model)
         
         UserDefaults.standard.setValue(data, forKey: "HomeModel")
+        print("UserDefaults SAVED")
     }
     func load() {
         guard let data = UserDefaults.standard.data(forKey: "HomeModel") else {
@@ -106,6 +137,7 @@ class HomeViewModel: ObservableObject {
         let savedData = try? decoder.decode(SettingsModel.self, from: data)
         if let data = savedData {
             model = data
+            print("UserDefaults LOADED")
         }
     }
 }

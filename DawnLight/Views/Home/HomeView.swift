@@ -93,20 +93,10 @@ struct HomeView: View {
             initModel.buzzDate = sunrise
         }
         print(initModel.backupBuzz)
-        if initModel.buzzDate.timeIntervalSinceNow < 0 {
-            initModel.buzzDate.addTimeInterval(dayInterval)
+        initModel.updateBuzzTimes()
+        if (initModel.usingGPS){
+            initModel.buzzDate = min(initModel.buzzDate, initModel.backupBuzz)
         }
-        if initModel.backupBuzz.timeIntervalSinceNow < 0 {
-            initModel.backupBuzz.addTimeInterval(dayInterval)
-        }
-        
-        if initModel.backupBuzz.timeIntervalSinceNow > dayInterval {
-            initModel.backupBuzz.addTimeInterval(-dayInterval)
-        }
-        if initModel.backupBuzz.timeIntervalSinceNow > dayInterval {
-            initModel.backupBuzz.addTimeInterval(-dayInterval)
-        }
-        initModel.buzzDate = min(initModel.buzzDate, initModel.backupBuzz)
         alarmController.createAVPlayer(sound: initModel.alarm.systemName)
         alarmController.play(volume: initModel.volume, delay: initModel.buzzDate.timeIntervalSinceNow)
         

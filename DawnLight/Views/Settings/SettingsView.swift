@@ -35,7 +35,7 @@ struct SettingsView: View {
                 }
                 Section(footer: Text("Set up your fixed alarm time. This time will be used if its earlier then sunrise. Only works if Location data is turned ON")){
                     DatePicker("Fixed alarm", selection: $viewModel.backupBuzz, displayedComponents: .hourAndMinute)
-                }
+                }.disabled(!viewModel.usingGPS)
             }
             .listStyle(GroupedListStyle())
             .navigationBarTitle("Settings")

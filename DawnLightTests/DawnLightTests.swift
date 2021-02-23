@@ -41,4 +41,8 @@ class DawnLightTests: XCTestCase {
         XCTAssertTrue(m == 14)
         XCTAssertTrue(s == 50)
     }
+    func test_saved_data_loading(){
+        homeModel.load()
+        XCTAssertNotNil(homeModel.model)
+    }
 }

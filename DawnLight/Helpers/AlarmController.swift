@@ -44,13 +44,13 @@ class AlarmController {
     }
     
     func play(volume: Float) {
+        print(MPVolumeView.getVolume())
         guard let player = player else { return }
         
         player.volume = volume
-        setDiviceVolumeTo(volume)
         player.prepareToPlay()
+        setDiviceVolumeTo(volume)
         player.play()
-        
     }
     
     func play(volume: Float, delay: Double) {
