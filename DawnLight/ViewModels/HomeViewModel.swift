@@ -10,6 +10,7 @@ import CoreLocation
 
 class HomeViewModel: ObservableObject {
     init() {
+        brightness = UIScreen.main.brightness
         load()
         if CLLocationManager.locationServicesEnabled() && usingGPS {
             location = LocationManager(listener: self)
@@ -21,9 +22,11 @@ class HomeViewModel: ObservableObject {
     
     @Published private(set) var model = SettingsModel()
     @Published var alarmSet = false
+    @Published var isShowingBlackScreen = false
     @Published var isLoading = false
     @Published var sunriseAsDate: Date?
     
+    var alarmController = AlarmController()
     var buzzDate = Date()
     var backupBuzz: Date {
         get {
@@ -49,6 +52,11 @@ class HomeViewModel: ObservableObject {
         set {
             model.usingGPS = newValue
             if newValue {
+                if location?.locationStatus == .denied {
+                    showDeniedWarning()
+                    model.usingGPS = false
+                    return
+                }
                 location = LocationManager(listener: self)
                 setNewBuzzDate()
             }
@@ -67,11 +75,12 @@ class HomeViewModel: ObservableObject {
     var location: LocationManager?
     var sunriseTime: String? {
         if let sunriseDate = sunriseAsDate {
-            let stringDateFormatter = DateFormatter()
-            stringDateFormatter.dateFormat = "hh:mm"
-            return stringDateFormatter.string(from: sunriseDate)
+            return DateFormatter.localizedString(from: sunriseDate, dateStyle: .none, timeStyle: .short)
         }
         return nil
+    }
+    var buzzTime: String {
+        return DateFormatter.localizedString(from: buzzDate, dateStyle: .none, timeStyle: .short)
     }
     
     private func formatData(_ data: SunriseData){
@@ -81,14 +90,71 @@ class HomeViewModel: ObservableObject {
         dateFormatter.formatOptions = [.withInternetDateTime]
         
         if let date = dateFormatter.date(from: data.results.sunrise) {
-            print(date)
             sunriseAsDate = date
             buzzDate = min(backupBuzz, date)
-            print(buzzDate)
         }
     }
     
     //MARK: - Intents
+    @Published var isShowingLocationWarning = false
+    func showDeniedWarning() {
+        isShowingLocationWarning = true
+    }
+    func scheduleAlarm() {
+        isShowingBlackScreen = false
+        refreshTimer?.invalidate()
+        if usingGPS{
+            guard let sunrise = sunriseAsDate else { return }
+            buzzDate = sunrise
+        }
+        updateBuzzTimes()
+        if (usingGPS){
+            buzzDate = min(buzzDate, backupBuzz)
+        }
+        alarmController.createAVPlayer(sound: alarm.systemName)
+        alarmController.play(volume: volume, delay: buzzDate.timeIntervalSinceNow)
+        withAnimation{
+            alarmSet = true
+        }
+        startScreenTimer()
+        print("Alarm set to \(buzzDate), volume: \(volume), alarm: \(alarm.systemName)")
+    }
+    func cancelAlarm() {
+        withAnimation{
+            alarmController.cancelAlarm()
+            alarmSet = false
+        }
+    }
+    
+    private var refreshTimer: Timer?
+    func startScreenTimer() {
+        self.refreshTimer?.invalidate()
+        refreshTimer = Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { timer in
+            self.refreshTimer = timer
+            if (self.alarmSet) {
+                self.showBlackScreen()
+            }else{
+                self.refreshTimer?.invalidate()
+            }
+        }
+    }
+    var brightness: CGFloat
+    func showBlackScreen() {
+        withAnimation(.easeInOut(duration: 2)){
+            brightness = UIScreen.main.brightness
+            isShowingBlackScreen = true
+            refreshTimer?.invalidate()
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2){
+                UIScreen.main.brightness = CGFloat(0)
+            }
+        }
+    }
+    func hideBlackScreen() {
+        withAnimation(.easeInOut(duration: 1)){
+            UIScreen.main.brightness = CGFloat(brightness)
+            isShowingBlackScreen = false
+        }
+    }
     func loadWeatherData() {
         if sunriseAsDate == nil && isLoading == false {
             if let latitude = self.location?.lastLocation?.coordinate.latitude, let longitude = self.location?.lastLocation?.coordinate.longitude {

@@ -10,34 +10,51 @@ import CoreLocation
 
 struct ContentView: View {
     @State var selectedTab = 0
-    var model: HomeViewModel
+    @EnvironmentObject var model: HomeViewModel
     var body: some View {
-        TabView(selection: $selectedTab){
-            HomeView(initModel: model)
-                .tag(0)
-                .tabItem{
-                    VStack {
-                        Image(systemName: "house.fill")
-                        Text("Home")
-                    }
+        if model.alarmSet {
+            ZStack{
+                if model.isShowingBlackScreen {
+                    Color.black
+                        .statusBar(hidden: true)
+                        .onTapGesture {
+                            model.hideBlackScreen()
+                            model.startScreenTimer()
+                        }
+                }else{
+                    GoodNightView()
                 }
-            SettingsView(viewModel: model)
-                .tag(1)
-                .tabItem{
-                    VStack {
-                        Image(systemName: "gear")
-                        Text("Settings")
+            }
+        }else{
+            TabView(selection: $selectedTab){
+                HomeView()
+                    .tag(0)
+                    .tabItem{
+                        VStack {
+                            Image(systemName: "house.fill")
+                            Text("Home")
+                        }
                     }
-                }
+                SettingsView()
+                    .tag(1)
+                    .tabItem{
+                        VStack {
+                            Image(systemName: "gear")
+                            Text("Settings")
+                        }
+                    }
+            }.transition(AnyTransition.opacity.combined(with: .move(edge: .bottom)))
+            .sheet(isPresented: $model.isShowingLocationWarning){
+                Text("Location services denied")
+            }
         }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(model: HomeViewModel())
+        ContentView()
+            .environmentObject(HomeViewModel())
             .preferredColorScheme(.dark)
     }
 }
-
-

@@ -44,7 +44,6 @@ class AlarmController {
     }
     
     func play(volume: Float) {
-        print(MPVolumeView.getVolume())
         guard let player = player else { return }
         
         player.volume = volume

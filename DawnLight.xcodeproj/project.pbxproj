@@ -48,6 +48,7 @@
 		6331BB8625E40F420027F3EC /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6331BB8525E40F420027F3EC /* Alarm.swift */; };
 		6331BB8A25E41E750027F3EC /* AlarmPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6331BB8925E41E750027F3EC /* AlarmPicker.swift */; };
 		6331BB8D25E4234A0027F3EC /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6331BB8525E40F420027F3EC /* Alarm.swift */; };
+		6331BB9725EA82E50027F3EC /* GoodNightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6331BB9625EA82E50027F3EC /* GoodNightView.swift */; };
 		63322A4225CAE1A7006C7A2D /* MPVolumeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63322A4125CAE1A7006C7A2D /* MPVolumeView.swift */; };
 		63322A4525CAEFFE006C7A2D /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63322A4425CAEFFE006C7A2D /* DateExtension.swift */; };
 		63901DD425B74FE8002B3A33 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63901DD325B74FE8002B3A33 /* SettingsModel.swift */; };
@@ -106,6 +107,7 @@
 		6331BB7125DFC9170027F3EC /* Ping2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Ping2.mp3; sourceTree = "<group>"; };
 		6331BB8525E40F420027F3EC /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 		6331BB8925E41E750027F3EC /* AlarmPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmPicker.swift; sourceTree = "<group>"; };
+		6331BB9625EA82E50027F3EC /* GoodNightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodNightView.swift; sourceTree = "<group>"; };
 		63322A4125CAE1A7006C7A2D /* MPVolumeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPVolumeView.swift; sourceTree = "<group>"; };
 		63322A4425CAEFFE006C7A2D /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		63901DD325B74FE8002B3A33 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				63901DE525BC7DA1002B3A33 /* HomeView.swift */,
+				6331BB9625EA82E50027F3EC /* GoodNightView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -503,6 +506,7 @@
 				63322A4225CAE1A7006C7A2D /* MPVolumeView.swift in Sources */,
 				63C4BD2425B5BA0600B4C6E2 /* TimeInterval.swift in Sources */,
 				63C4BD2325B5BA0600B4C6E2 /* CGFunctions.swift in Sources */,
+				6331BB9725EA82E50027F3EC /* GoodNightView.swift in Sources */,
 				63C4BD1B25B5BA0600B4C6E2 /* LeftPad.swift in Sources */,
 				6326E32225D3CBDC0097009D /* Astronomy.swift in Sources */,
 				6331BB8A25E41E750027F3EC /* AlarmPicker.swift in Sources */,
@@ -713,7 +717,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 0.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vaclavikmartin.DawnLight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -736,7 +740,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 0.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vaclavikmartin.DawnLight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

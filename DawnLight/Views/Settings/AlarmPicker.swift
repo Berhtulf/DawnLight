@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AlarmPicker: View {
-    var model: HomeViewModel
+    @EnvironmentObject var model: HomeViewModel
     @State var playingSample: Alarm?
     var alarmController = AlarmController()
     @Environment(\.presentationMode) var presentationMode
@@ -48,7 +48,7 @@ struct AlarmPicker: View {
 struct AlarmPicker_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
-            AlarmPicker(model: HomeViewModel())
+            AlarmPicker()
                 .preferredColorScheme(.dark)
                 .navigationBarTitleDisplayMode(.inline)
         }

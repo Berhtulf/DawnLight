@@ -13,7 +13,8 @@ struct DawnLightApp: App {
     var model = HomeViewModel()
     var body: some Scene {
         WindowGroup {
-            ContentView(model: model)
+            ContentView()
+                .environmentObject(model)
                 .preferredColorScheme(.dark)
                 .accentColor(.orange)
         }

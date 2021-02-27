@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @ObservedObject var viewModel: HomeViewModel
+    @EnvironmentObject var viewModel: HomeViewModel
     
     var body: some View {
         NavigationView{
@@ -18,7 +18,7 @@ struct SettingsView: View {
                 }
                 Section(header:Text("Alarm")){
                     NavigationLink(
-                        destination: AlarmPicker(model: viewModel),
+                        destination: AlarmPicker(),
                         label: {
                             HStack{
                                 Text("Sound")
@@ -40,6 +40,7 @@ struct SettingsView: View {
             .listStyle(GroupedListStyle())
             .navigationBarTitle("Settings")
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
@@ -47,7 +48,7 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView(viewModel: HomeViewModel())
+        SettingsView()
             .preferredColorScheme(.dark)
     }
 }
