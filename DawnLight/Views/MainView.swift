@@ -25,28 +25,57 @@ struct ContentView: View {
                     GoodNightView()
                 }
             }
+            .animation(.easeInOut(duration: 1))
         }else{
-            TabView(selection: $selectedTab){
-                HomeView()
-                    .tag(0)
-                    .tabItem{
-                        VStack {
-                            Image(systemName: "house.fill")
-                            Text("Home")
+            ZStack{
+                TabView(selection: $selectedTab){
+                    HomeView()
+                        .tag(0)
+                        .tabItem{
+                            VStack {
+                                Image(systemName: "house.fill")
+                                Text("Home")
+                            }
+                        }
+                    SettingsView()
+                        .tag(1)
+                        .tabItem{
+                            VStack {
+                                Image(systemName: "gear")
+                                Text("Settings")
+                            }
+                        }
+                }.transition(AnyTransition.opacity.combined(with: .move(edge: .bottom)))
+                .alert(isPresented: $model.alarmRinging, content: {
+                    Alert(title: Text("Wake UP"), message: Text("Sun is shining and so are you"), primaryButton: .cancel(Text("Snooze"), action: model.snoozeAlarm), secondaryButton: .default(Text("I'm up"), action: model.cancelAlarm))
+                })
+                
+                if (model.isShowingLocationWarning){
+                    ZStack{
+                        Color(UIColor.systemBackground).opacity(0.6)
+                            .ignoresSafeArea(.all)
+                            .onTapGesture {
+                                model.isShowingLocationWarning = false
+                            }
+                        VStack{
+                            Spacer()
+                            AllowLocationSettingsView(isPresented: $model.isShowingLocationWarning)
                         }
                     }
-                SettingsView()
-                    .tag(1)
-                    .tabItem{
-                        VStack {
-                            Image(systemName: "gear")
-                            Text("Settings")
-                        }
-                    }
-            }.transition(AnyTransition.opacity.combined(with: .move(edge: .bottom)))
-            .sheet(isPresented: $model.isShowingLocationWarning){
-                Text("Location services denied")
-            }
+                }
+            }.transition(.move(edge: .bottom))
+        }
+    }
+    
+    private func goToAppSettings() {
+        guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+            return
+        }
+        
+        if UIApplication.shared.canOpenURL(settingsUrl) {
+            UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                print("Settings opened: \(success)")
+            })
         }
     }
 }
@@ -54,6 +83,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .accentColor(.orange)
             .environmentObject(HomeViewModel())
             .preferredColorScheme(.dark)
     }

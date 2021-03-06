@@ -14,4 +14,5 @@ struct SettingsModel: Codable {
     var alarm: Alarm = Alarm.Auratone
     
     var backupBuzz: Date?
+    var snoozeInterval: Int = 2
 }

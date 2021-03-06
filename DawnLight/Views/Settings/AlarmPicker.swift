@@ -38,7 +38,7 @@ struct AlarmPicker: View {
                 print(model.alarm)
                 presentationMode.wrappedValue.dismiss()
             }
-        }.listStyle(InsetListStyle())
+        }.listStyle(GroupedListStyle())
         .onDisappear(){
             alarmController.stopSample()
         }

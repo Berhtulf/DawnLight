@@ -32,6 +32,14 @@ struct SettingsView: View {
                         Slider(value: $viewModel.volume, in: 0...1, label: {Text("Volume")})
                         Image(systemName: "speaker.wave.3.fill")
                     }
+                    Picker(selection: $viewModel.snoozeInterval, label: Text("Snooze"), content: {
+                        Text("5 min").tag(1)
+                        Text("10 min").tag(2)
+                        Text("15 min").tag(3)
+                        Text("20 min").tag(4)
+                        Text("25 min").tag(5)
+                        Text("30 min").tag(6)
+                    })
                 }
                 Section(footer: Text("Set up your fixed alarm time. This time will be used if its earlier then sunrise. Only works if Location data is turned ON")){
                     DatePicker("Fixed alarm", selection: $viewModel.backupBuzz, displayedComponents: .hourAndMinute)

@@ -10,11 +10,11 @@ import AVFoundation
 import MediaPlayer
 
 struct HomeView: View {
-    @EnvironmentObject var initModel: HomeViewModel
+    @EnvironmentObject var model: HomeViewModel
     
     var body: some View {
         VStack{
-            if initModel.isLoading {
+            if model.isLoading {
                 LoadingView()
             } else {
                 GeometryReader{ geometry in
@@ -25,14 +25,14 @@ struct HomeView: View {
                         Spacer()
                         ZStack{
                             VStack{
-                                DatePicker("", selection: $initModel.buzzDate, displayedComponents: .hourAndMinute)
+                                DatePicker("", selection: $model.buzzDate, displayedComponents: .hourAndMinute)
                                     .labelsHidden()
                                     .padding()
-                                    .disabled(initModel.usingGPS)
-                                    .scaleEffect(initModel.usingGPS ? 3 : 2.5)
-                                    .padding(.vertical, initModel.usingGPS ? 0 : 20)
-                                if (initModel.usingGPS){
-                                    Text("Sunrise at \(initModel.sunriseTime ?? "N/A")")
+                                    .disabled(model.usingGPS)
+                                    .scaleEffect(model.usingGPS ? 3 : 2.5)
+                                    .padding(.vertical, model.usingGPS ? 0 : 20)
+                                if (model.usingGPS){
+                                    Text("Sunrise at \(model.sunriseTime ?? "N/A")")
                                 }
                             }
                             Circle()
@@ -48,7 +48,11 @@ struct HomeView: View {
                         }
                         .frame(height: geometry.size.width)
                         .padding()
-                        Button(action: initModel.scheduleAlarm, label: {
+                        Button(action: {
+                            withAnimation{
+                                model.scheduleAlarm()
+                            }
+                        }, label: {
                             Text("Start")
                         })
                             .font(.system(size: 25))

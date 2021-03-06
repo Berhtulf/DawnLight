@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct DawnLightApp: App {
     @Environment(\.scenePhase) var scenePhase
-    var model = HomeViewModel()
+    @StateObject var model = HomeViewModel()
     var body: some Scene {
         WindowGroup {
             ContentView()

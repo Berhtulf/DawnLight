@@ -52,7 +52,7 @@ class AlarmController {
         player.play()
     }
     
-    func play(volume: Float, delay: Double) {
+    func play(volume: Float, after delay: TimeInterval) {
         guard let player = player else { return }
         
         player.volume = volume
