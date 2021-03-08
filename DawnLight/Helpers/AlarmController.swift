@@ -28,7 +28,7 @@ class AlarmController {
     }
     
     func cancelAlarm(){
-        player?.stop()
+        stop()
     }
     func stop(){
         player?.stop()

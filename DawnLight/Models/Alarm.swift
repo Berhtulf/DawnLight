@@ -9,12 +9,13 @@ import Foundation
 
 struct Alarm: Hashable, Identifiable, Codable {
     internal init(displayName: String, systemName: String) {
+        self.id = UUID()
         self.displayName = displayName
         self.systemName = systemName
     }
     
-    let id = UUID()
-    let displayName:String
+    let id: UUID
+    let displayName: String
     let systemName: String
     
     

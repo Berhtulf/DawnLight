@@ -48,13 +48,7 @@ struct HomeView: View {
                         }
                         .frame(height: geometry.size.width)
                         .padding()
-                        Button(action: {
-                            withAnimation{
-                                model.scheduleAlarm()
-                            }
-                        }, label: {
-                            Text("Start")
-                        })
+                        Button("Start", action: model.scheduleAlarm)
                             .font(.system(size: 25))
                             .foregroundColor(.white)
                             .background(

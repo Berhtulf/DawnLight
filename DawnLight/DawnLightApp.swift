@@ -23,9 +23,9 @@ struct DawnLightApp: App {
             case .active:
                 print("App is active")
             case .inactive:
-                model.save()
                 print("App is inactive")
             case .background:
+                model.save()
                 print("App is in background")
             @unknown default:
                 print("Oh - interesting: I received an unexpected new value.")

@@ -11,27 +11,18 @@ import MediaPlayer
 
 class DawnLightTests: XCTestCase {
     var homeModel: HomeViewModel!
+    var currentTime: Date!
     
     override func setUp() {
         super.setUp()
         homeModel = HomeViewModel()
+        currentTime = Date()
     }
 
     override func tearDown() {
         super.tearDown()
         homeModel = nil
-    }
-    
-    func test_scientific_format() {
-        let number: Float = 12456762
-        XCTAssertEqual(number.toScientific, "1,25e+7")
-    }
-    
-    func test_weather_api() throws {
-        try WeatherAPI().getWeather(lat: 10, lon: 10) { data in
-            guard data != nil  else { return }
-            XCTAssertTrue(data?.status == "OK")
-        }
+        currentTime = nil
     }
     
     func test_timinterval_to_time() {
@@ -44,5 +35,34 @@ class DawnLightTests: XCTestCase {
     func test_saved_data_loading(){
         homeModel.load()
         XCTAssertNotNil(homeModel.model)
+    }
+    
+    func test_scheduleAlarmWithBackup() {
+        homeModel.usingGPS = true
+        
+        homeModel.buzzDate = Date(timeInterval: 3600, since: currentTime)
+        homeModel.backupBuzz = Date(timeInterval: 2000, since: currentTime)
+        homeModel.scheduleAlarm()
+        XCTAssertEqual(homeModel.buzzDate, Date(timeInterval: 2000, since: currentTime))
+    }
+    
+    func test_scheduleAlarmWithBackupNoGPS() {
+        homeModel.usingGPS = false
+        
+        homeModel.buzzDate = Date(timeInterval: 1800, since: currentTime)
+        homeModel.backupBuzz = Date(timeInterval: 300, since: currentTime)
+        homeModel.scheduleAlarm()
+        
+        XCTAssertEqual(homeModel.buzzDate, Date(timeInterval: 1800, since: currentTime))
+    }
+    
+    func test_snoozeAlarm() {
+        homeModel.usingGPS = false
+        homeModel.buzzDate = currentTime.addingTimeInterval(600)
+        
+        homeModel.scheduleAlarm()
+        homeModel.snoozeAlarm(by: 3600)
+        
+        XCTAssertEqual(homeModel.buzzDate, currentTime.addingTimeInterval(4200))
     }
 }

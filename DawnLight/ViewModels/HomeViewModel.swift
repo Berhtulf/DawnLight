@@ -7,14 +7,24 @@
 
 import SwiftUI
 import CoreLocation
+import Combine
 
 class HomeViewModel: ObservableObject {
+    @Published private(set) var model = SettingsModel()
+    @Published private(set) var screenHider = ScreenHider()
+    var screenHiderCancellable: AnyCancellable? = nil
+    
     init() {
-        brightness = UIScreen.main.brightness
+        let currentTime = Date()
+        buzzDate = currentTime
+        backupBuzz = currentTime
+        
         load()
         if CLLocationManager.locationServicesEnabled() {
-            print("Creating GPS manager")
             location = LocationManager(listener: self)
+        }
+            screenHiderCancellable = screenHider.objectWillChange.sink { [weak self] (_) in
+            self?.objectWillChange.send()
         }
     }
     deinit {
@@ -22,22 +32,19 @@ class HomeViewModel: ObservableObject {
     }
     
     @Published var alarmRinging = false
-    
-    @Published private(set) var model = SettingsModel()
     @Published var alarmSet = false
-    @Published var isShowingBlackScreen = false
     @Published var isLoading = false
     @Published var sunriseAsDate: Date?
+    @Published var isShowingLocationWarning = false
     
     var alarmController = AlarmController()
-    var buzzDate = Date()
+    @Published var buzzDate: Date
     var backupBuzz: Date {
         get {
-            model.backupBuzz ?? Date()
+            model.backupBuzz
         }
         set {
             model.backupBuzz = newValue
-            setNewBuzzDate()
         }
     }
     var volume: Float {
@@ -54,18 +61,6 @@ class HomeViewModel: ObservableObject {
         }
         set {
             model.usingGPS = newValue
-            if newValue {
-                if location?.locationStatus == .denied {
-                    model.usingGPS = false
-                    showDeniedWarning()
-                    model.usingGPS = false
-                    return
-                }
-                if location == nil {
-                    location = LocationManager(listener: self)
-                }
-                setNewBuzzDate()
-            }
         }
     }
     var snoozeInterval: Int {
@@ -82,7 +77,6 @@ class HomeViewModel: ObservableObject {
         }
         set {
             model.alarm = newValue
-            print(model.alarm)
         }
     }
     
@@ -98,6 +92,10 @@ class HomeViewModel: ObservableObject {
         return DateFormatter.localizedString(from: buzzDate, dateStyle: .none, timeStyle: .short)
     }
     
+    //MARK: - Private functions
+    private func showDeniedWarning() {
+        isShowingLocationWarning = true
+    }
     private func formatData(_ data: SunriseData){
         model.sunrise = data.results.sunrise
         
@@ -109,82 +107,89 @@ class HomeViewModel: ObservableObject {
             buzzDate = min(backupBuzz, date)
         }
     }
+    private func sendAPIReguest() {
+        isLoading = true
+        if let latitude = self.location?.lastLocation?.coordinate.latitude, let longitude = self.location?.lastLocation?.coordinate.longitude {
+            try? self.weatherAPI.getWeather(lat: latitude, lon: longitude) { data in
+                guard let data = data else { return }
+                self.formatData(data)
+                self.isLoading = false
+            }
+        }
+    }
+    private func correctBuzzTimes() {
+        while buzzDate.timeIntervalSinceNow > 86400 {
+            buzzDate.addTimeInterval(-86400)
+        }
+        while buzzDate.timeIntervalSinceNow < 0 {
+            buzzDate.addTimeInterval(86400)
+        }
+        
+        while backupBuzz.timeIntervalSinceNow < 0 {
+            backupBuzz.addTimeInterval(86400)
+        }
+        while backupBuzz.timeIntervalSinceNow > 86400 {
+            backupBuzz.addTimeInterval(-86400)
+        }
+    }
     
     //MARK: - Intents
-    @Published var isShowingLocationWarning = false
-    func showDeniedWarning() {
-        print("Showing GPS warning")
-        isShowingLocationWarning = true
+    func checkLocationPermissions() {
+        if location?.locationStatus == .denied {
+            showDeniedWarning()
+            model.usingGPS = false
+            return
+        }
+        if location == nil {
+            location = LocationManager(listener: self)
+        }
+    }
+    
+    func calculateBestTime() {
+        guard !alarmRinging else { return }
+        correctBuzzTimes()
+        if usingGPS  {
+            guard let sunrise = sunriseAsDate else {
+                buzzDate = min(buzzDate, backupBuzz)
+                return
+            }
+            buzzDate = min(sunrise, backupBuzz)
+        }
     }
     func scheduleAlarm() {
-        if usingGPS{
-            guard let sunrise = sunriseAsDate else { return }
-            buzzDate = sunrise
-        }
-        updateBuzzTimes()
-        if (usingGPS){
-            buzzDate = min(buzzDate, backupBuzz)
-        }
+        calculateBestTime()
         scheduleAlarm(date: buzzDate)
     }
     
+    /// Schedules alarm to provided date
+    /// - Parameter date: Alarm date
     func scheduleAlarm(date: Date) {
         UIApplication.shared.isIdleTimerDisabled = true
-        isShowingBlackScreen = false
-        refreshTimer?.invalidate()
         alarmController.createAVPlayer(sound: alarm.systemName)
         alarmSet = true
-        startScreenTimer()
-        print("Alarm set to \(buzzDate), volume: \(volume), alarm: \(alarm.systemName)")
-        NotificationController.requestNotification(time: buzzDate.timeIntervalSinceNow,
-                                                   title: "Time to shine",
-                                                   subtitle: DateFormatter.localizedString(from: buzzDate, dateStyle: .none, timeStyle: .medium),
-                                                   uuid: "alarmNotification")
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + buzzDate.timeIntervalSinceNow){
-            print("Alarm ringing")
+        self.screenHider.startScreenTimer()
+        
+        print("Alarm set to \(buzzDate), alarm: \(alarm.systemName), volume: \(volume)")
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + date.timeIntervalSinceNow){
             self.alarmController.play(volume: self.volume)
-            self.hideBlackScreen()
+            self.screenHider.hideBlackScreen()
             self.alarmSet = false
             self.alarmRinging = true
         }
     }
-    func snoozeAlarm() {
+    
+    func snoozeAlarm(by snoozeInterval: TimeInterval) {
         alarmController.cancelAlarm()
-        buzzDate.addTimeInterval(TimeInterval(model.snoozeInterval * 5 * 60))
+        buzzDate.addTimeInterval(snoozeInterval)
         scheduleAlarm(date: buzzDate)
     }
     func cancelAlarm() {
         alarmController.cancelAlarm()
+        screenHider.hideBlackScreen()
         alarmSet = false
         UIApplication.shared.isIdleTimerDisabled = false
     }
     
-    private var refreshTimer: Timer?
-    func startScreenTimer() {
-        self.refreshTimer?.invalidate()
-        refreshTimer = Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { timer in
-            self.refreshTimer = timer
-            if (self.alarmSet) {
-                self.showBlackScreen()
-            }else{
-                self.refreshTimer?.invalidate()
-            }
-        }
-    }
-    
-    var brightness: CGFloat
-    func showBlackScreen() {
-        brightness = UIScreen.main.brightness
-        isShowingBlackScreen = true
-        refreshTimer?.invalidate()
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2){
-            UIScreen.main.brightness = CGFloat(0)
-        }
-    }
-    func hideBlackScreen() {
-        UIScreen.main.brightness = CGFloat(brightness)
-        isShowingBlackScreen = false
-    }
     func loadWeatherData() {
         if (sunriseAsDate == nil && isLoading == false) {
             sendAPIReguest()
@@ -195,37 +200,7 @@ class HomeViewModel: ObservableObject {
         }
     }
     
-    func sendAPIReguest() {
-        isLoading = true
-        if let latitude = self.location?.lastLocation?.coordinate.latitude, let longitude = self.location?.lastLocation?.coordinate.longitude {
-            try? self.weatherAPI.getWeather(lat: latitude, lon: longitude) { data in
-                guard let data = data else { return }
-                self.formatData(data)
-                self.isLoading = false
-            }
-        }
-    }
-    
-    func updateBuzzTimes() {
-        if backupBuzz.timeIntervalSinceNow < 0 {
-            backupBuzz.addTimeInterval(86400)
-        }
-        if backupBuzz.timeIntervalSinceNow > 86400 {
-            backupBuzz.addTimeInterval(-86400)
-        }
-        if buzzDate.timeIntervalSinceNow > 86400 {
-            buzzDate.addTimeInterval(-86400)
-        }
-        if buzzDate.timeIntervalSinceNow < 0 {
-            buzzDate.addTimeInterval(86400)
-        }
-    }
-    func setNewBuzzDate() {
-        buzzDate = sunriseAsDate ?? Date()
-        updateBuzzTimes()
-        buzzDate = min(buzzDate, backupBuzz)
-    }
-    
+    //MARK: - System functions
     func save() {
         let encoder = JSONEncoder()
         let data = try? encoder.encode(model)

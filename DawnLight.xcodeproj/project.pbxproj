@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		631E3C5B25EEB26B004A9852 /* AllowLocationSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631E3C5A25EEB26B004A9852 /* AllowLocationSettingsView.swift */; };
+		631E3C6525F4D58A004A9852 /* ScreenHider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631E3C6425F4D58A004A9852 /* ScreenHider.swift */; };
+		631E3C6825F4DE45004A9852 /* ScreenHider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631E3C6425F4D58A004A9852 /* ScreenHider.swift */; };
 		6326E30B25CF0EC70097009D /* AlarmController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6326E30A25CF0EC70097009D /* AlarmController.swift */; };
 		6326E30F25CF1BD20097009D /* SunriseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6326E30E25CF1BD20097009D /* SunriseData.swift */; };
 		6326E31525D317640097009D /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6326E31425D317640097009D /* LoadingView.swift */; };
@@ -82,6 +84,7 @@
 
 /* Begin PBXFileReference section */
 		631E3C5A25EEB26B004A9852 /* AllowLocationSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllowLocationSettingsView.swift; sourceTree = "<group>"; };
+		631E3C6425F4D58A004A9852 /* ScreenHider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenHider.swift; sourceTree = "<group>"; };
 		6326E30A25CF0EC70097009D /* AlarmController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmController.swift; sourceTree = "<group>"; };
 		6326E30E25CF1BD20097009D /* SunriseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunriseData.swift; sourceTree = "<group>"; };
 		6326E31425D317640097009D /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
@@ -153,6 +156,7 @@
 				63C4BD0E25B5BA0600B4C6E2 /* Shared */,
 				63C4BD2E25B5CB7A00B4C6E2 /* LocationManager.swift */,
 				6326E30A25CF0EC70097009D /* AlarmController.swift */,
+				631E3C6425F4D58A004A9852 /* ScreenHider.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -477,6 +481,7 @@
 				6331BB2A25DC34B30027F3EC /* WeatherAPIError.swift in Sources */,
 				6331BB4525DC357C0027F3EC /* PaddingLeft.swift in Sources */,
 				6331BB4B25DC357C0027F3EC /* Notifications.swift in Sources */,
+				631E3C6825F4DE45004A9852 /* ScreenHider.swift in Sources */,
 				6331BB4A25DC357C0027F3EC /* MPVolumeView.swift in Sources */,
 				6331BB4025DC34CE0027F3EC /* WeatherData.swift in Sources */,
 				6331BB4D25DC357C0027F3EC /* LocationManager.swift in Sources */,
@@ -501,6 +506,7 @@
 				6326E30B25CF0EC70097009D /* AlarmController.swift in Sources */,
 				63C4BD1F25B5BA0600B4C6E2 /* PaddingLeft.swift in Sources */,
 				63C4BD3325B5D7D600B4C6E2 /* WeatherAPI.swift in Sources */,
+				631E3C6525F4D58A004A9852 /* ScreenHider.swift in Sources */,
 				63C4BD2125B5BA0600B4C6E2 /* Notifications.swift in Sources */,
 				63C4BD2C25B5BD6B00B4C6E2 /* HomeViewModel.swift in Sources */,
 				631E3C5B25EEB26B004A9852 /* AllowLocationSettingsView.swift in Sources */,
@@ -694,6 +700,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"DawnLight/Preview Content\"";
 				DEVELOPMENT_TEAM = 45Z42MYT8F;
 				ENABLE_PREVIEWS = YES;
@@ -717,6 +724,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"DawnLight/Preview Content\"";
 				DEVELOPMENT_TEAM = 45Z42MYT8F;
 				ENABLE_PREVIEWS = YES;

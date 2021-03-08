@@ -14,18 +14,18 @@ struct ContentView: View {
     var body: some View {
         if model.alarmSet {
             ZStack{
-                if model.isShowingBlackScreen {
-                    Color.black
-                        .statusBar(hidden: true)
-                        .onTapGesture {
-                            model.hideBlackScreen()
-                            model.startScreenTimer()
-                        }
-                }else{
-                    GoodNightView()
-                }
+                GoodNightView()
+                    .animation(.default)
+                Color.black
+                    .statusBar(hidden: model.screenHider.isShowingBlackScreen)
+                    .onTapGesture {
+                        model.screenHider.hideBlackScreen()
+                        model.screenHider.startScreenTimer()
+                    }
+                    .opacity(model.screenHider.isShowingBlackScreen ? 1 : 0)
             }
-            .animation(.easeInOut(duration: 1))
+            .transition(.move(edge: .bottom))
+            .animation(.easeIn)
         }else{
             ZStack{
                 TabView(selection: $selectedTab){
@@ -37,6 +37,9 @@ struct ContentView: View {
                                 Text("Home")
                             }
                         }
+                        .onAppear{
+                            model.calculateBestTime()
+                        }
                     SettingsView()
                         .tag(1)
                         .tabItem{
@@ -45,9 +48,17 @@ struct ContentView: View {
                                 Text("Settings")
                             }
                         }
-                }.transition(AnyTransition.opacity.combined(with: .move(edge: .bottom)))
+                        .animation(.none)
+                }
                 .alert(isPresented: $model.alarmRinging, content: {
-                    Alert(title: Text("Wake UP"), message: Text("Sun is shining and so are you"), primaryButton: .cancel(Text("Snooze"), action: model.snoozeAlarm), secondaryButton: .default(Text("I'm up"), action: model.cancelAlarm))
+                    Alert(title: Text("Wake UP"),
+                          message: Text("Sun is shining and so are you"),
+                          primaryButton: .cancel(Text("Snooze"),
+                                                 action: {
+                                                    model.snoozeAlarm(by: TimeInterval(model.snoozeInterval * 5 * 60))
+                                                 }),
+                          secondaryButton: .default(Text("I'm up"),
+                                                    action: model.cancelAlarm))
                 })
                 
                 if (model.isShowingLocationWarning){
@@ -63,7 +74,9 @@ struct ContentView: View {
                         }
                     }
                 }
-            }.transition(.move(edge: .bottom))
+            }
+            .transition(.move(edge: .bottom))
+            .animation(.spring())
         }
     }
     

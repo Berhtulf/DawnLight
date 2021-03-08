@@ -15,6 +15,11 @@ struct SettingsView: View {
             List{
                 Section(header:Text("General")){
                     Toggle("Use location data", isOn: $viewModel.usingGPS)
+                        .onChange(of: viewModel.usingGPS, perform: { value in
+                            if value {
+                                viewModel.checkLocationPermissions()
+                            }
+                        })
                 }
                 Section(header:Text("Alarm")){
                     NavigationLink(

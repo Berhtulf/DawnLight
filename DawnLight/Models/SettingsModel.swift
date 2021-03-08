@@ -13,6 +13,6 @@ struct SettingsModel: Codable {
     var usingGPS: Bool = true
     var alarm: Alarm = Alarm.Auratone
     
-    var backupBuzz: Date?
+    var backupBuzz: Date = Date()
     var snoozeInterval: Int = 2
 }

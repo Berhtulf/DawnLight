@@ -20,22 +20,20 @@ struct GoodNightView: View {
                 Text("Alarm set to \(model.buzzTime)")
                     .font(.subheadline)
                 Spacer()
-                Button(action: model.cancelAlarm, label: {
-                    Text("Cancel")
-                        .font(.system(size: 25))
-                        .foregroundColor(.white)
-                        .background(
-                            RoundedRectangle(cornerRadius: 30)
-                                .fill(LinearGradient(
-                                        gradient: Gradient(stops: [
-                                                            .init(color: Color(#colorLiteral(red: 1, green: 0.2705882489681244, blue: 0.22745098173618317, alpha: 1)), location: 0),
-                                                            .init(color: Color(#colorLiteral(red: 1, green: 0.6235294342041016, blue: 0.03921568766236305, alpha: 1)), location: 1)]),
-                                        startPoint: UnitPoint(x: 0, y: 0),
-                                        endPoint: UnitPoint(x: 1, y: 1)))
-                                .frame(width: 222, height: 63)
-                        )
-                        .offset(y: -31.5)
-                })
+                Button("Cancel", action: model.cancelAlarm)
+                .font(.system(size: 25))
+                .foregroundColor(.white)
+                .background(
+                    RoundedRectangle(cornerRadius: 30)
+                        .fill(LinearGradient(
+                                gradient: Gradient(stops: [
+                                                    .init(color: Color(#colorLiteral(red: 1, green: 0.2705882489681244, blue: 0.22745098173618317, alpha: 1)), location: 0),
+                                                    .init(color: Color(#colorLiteral(red: 1, green: 0.6235294342041016, blue: 0.03921568766236305, alpha: 1)), location: 1)]),
+                                startPoint: UnitPoint(x: 0, y: 0),
+                                endPoint: UnitPoint(x: 1, y: 1)))
+                        .frame(width: 222, height: 63)
+                )
+                .offset(y: -31.5)
             }
             Image("BackgroundImage")
                 .resizable()
