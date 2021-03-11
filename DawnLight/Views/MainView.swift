@@ -12,20 +12,21 @@ struct ContentView: View {
     @State var selectedTab = 0
     @EnvironmentObject var model: HomeViewModel
     var body: some View {
+        VStack{
         if model.alarmSet {
             ZStack{
                 GoodNightView()
-                    .animation(.default)
                 Color.black
                     .statusBar(hidden: model.screenHider.isShowingBlackScreen)
                     .onTapGesture {
+                        model.isShowingKeepOnWarnig = false
                         model.screenHider.hideBlackScreen()
                         model.screenHider.startScreenTimer()
                     }
                     .opacity(model.screenHider.isShowingBlackScreen ? 1 : 0)
             }
+            .animation(.easeInOut)
             .transition(.move(edge: .bottom))
-            .animation(.easeIn)
         }else{
             ZStack{
                 TabView(selection: $selectedTab){
@@ -75,8 +76,9 @@ struct ContentView: View {
                     }
                 }
             }
+            .animation(.easeInOut)
             .transition(.move(edge: .bottom))
-            .animation(.spring())
+        }
         }
     }
     

@@ -37,6 +37,9 @@ class HomeViewModel: ObservableObject {
     @Published var sunriseAsDate: Date?
     @Published var isShowingLocationWarning = false
     
+    @AppStorage("canShowKeepOnWarning") var canShowKeepOnWarning = true
+    @Published var isShowingKeepOnWarnig = false
+    
     var alarmController = AlarmController()
     @Published var buzzDate: Date
     var backupBuzz: Date {
@@ -164,6 +167,9 @@ class HomeViewModel: ObservableObject {
     /// Schedules alarm to provided date
     /// - Parameter date: Alarm date
     func scheduleAlarm(date: Date) {
+        if canShowKeepOnWarning {
+            self.isShowingKeepOnWarnig = true
+        }
         UIApplication.shared.isIdleTimerDisabled = true
         alarmController.createAVPlayer(sound: alarm.systemName)
         alarmSet = true
