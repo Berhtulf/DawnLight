@@ -194,6 +194,7 @@ class HomeViewModel: ObservableObject {
         screenHider.hideBlackScreen()
         alarmSet = false
         UIApplication.shared.isIdleTimerDisabled = false
+        AppStoreReviewPrompt.requestReviewIfAppropriate()
     }
     
     func loadWeatherData() {

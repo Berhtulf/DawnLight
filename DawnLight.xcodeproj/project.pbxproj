@@ -51,6 +51,7 @@
 		6331BB8D25E4234A0027F3EC /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6331BB8525E40F420027F3EC /* Alarm.swift */; };
 		6331BB9725EA82E50027F3EC /* GoodNightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6331BB9625EA82E50027F3EC /* GoodNightView.swift */; };
 		63322A4225CAE1A7006C7A2D /* MPVolumeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63322A4125CAE1A7006C7A2D /* MPVolumeView.swift */; };
+		63694A9626008622008A8703 /* AppStoreReviewPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63694A9526008622008A8703 /* AppStoreReviewPrompt.swift */; };
 		63901DD425B74FE8002B3A33 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63901DD325B74FE8002B3A33 /* SettingsModel.swift */; };
 		63901DDA25BC7A12002B3A33 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63901DD925BC7A12002B3A33 /* WeatherData.swift */; };
 		63901DDF25BC7B45002B3A33 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63901DDE25BC7B45002B3A33 /* SettingsView.swift */; };
@@ -110,6 +111,7 @@
 		6331BB8925E41E750027F3EC /* AlarmPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmPicker.swift; sourceTree = "<group>"; };
 		6331BB9625EA82E50027F3EC /* GoodNightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodNightView.swift; sourceTree = "<group>"; };
 		63322A4125CAE1A7006C7A2D /* MPVolumeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPVolumeView.swift; sourceTree = "<group>"; };
+		63694A9526008622008A8703 /* AppStoreReviewPrompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreReviewPrompt.swift; sourceTree = "<group>"; };
 		63901DD325B74FE8002B3A33 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
 		63901DD925BC7A12002B3A33 /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
 		63901DDE25BC7B45002B3A33 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				63C4BD2E25B5CB7A00B4C6E2 /* LocationManager.swift */,
 				6326E30A25CF0EC70097009D /* AlarmController.swift */,
 				631E3C6425F4D58A004A9852 /* ScreenHider.swift */,
+				63694A9526008622008A8703 /* AppStoreReviewPrompt.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -523,6 +526,7 @@
 				63C4BCFA25B5B19500B4C6E2 /* DawnLightApp.swift in Sources */,
 				63C4BD2F25B5CB7A00B4C6E2 /* LocationManager.swift in Sources */,
 				63901DDA25BC7A12002B3A33 /* WeatherData.swift in Sources */,
+				63694A9626008622008A8703 /* AppStoreReviewPrompt.swift in Sources */,
 				63C4BD2925B5BA3A00B4C6E2 /* CapsuleButtonStyle.swift in Sources */,
 				63901DDF25BC7B45002B3A33 /* SettingsView.swift in Sources */,
 				6326E30F25CF1BD20097009D /* SunriseData.swift in Sources */,
@@ -714,7 +718,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vaclavikmartin.DawnLight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -738,7 +742,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vaclavikmartin.DawnLight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
